@@ -1,0 +1,158 @@
+body {
+    font-family: 'Poppins', sans-serif !important;
+    min-height: 100vh;
+    position: relative;
+    background: radial-gradient(44% 44% at 42.4% 56%, #58595E 0%, #2C2D36 100%);
+    padding-bottom: 40px;
+}
+
+div {
+    color: white;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.form-dark input {
+    background-color: transparent !important;
+    color: white !important;
+    border: none !important;
+    outline: none !important;
+    border-radius: 0px;
+    border-bottom: 2px solid white !important;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+}
+
+.jumbotron {
+    background-image: url('/img/jumbotron.png');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.jumbotron img {
+    margin-left: 12%;
+}
+
+.content {
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+h1 {
+    color: white;
+}
+
+h1 span {
+    font-weight: 200;
+    color: white;
+}
+
+p {
+    font-weight: 200;
+    color: white;
+}
+
+.icon-jumbotron {
+    bottom: 5%;
+    left: 50%;
+    right: 50%;
+    position: absolute;
+}
+
+section {
+    background: radial-gradient(44% 44% at 42.4% 56%, #58595E 0%, #2C2D36 100%);
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+p.light {
+    font-weight: 100;
+}
+
+section.dark {
+    background: black;
+    color: white;
+}
+
+.news-card {
+    width: 250px;
+    height: fit-content;
+}
+.sidebar{
+    width: 60vw;
+    height: 100vh;
+    padding: 12px;
+    padding-top: 50px;
+    overflow-y: hidden;
+    position: fixed;
+    background: linear-gradient(147.2deg, #58595E -11.95%, #2C2D36 80.41%);
+}
+.card-member{
+    background-image: url("/img/bg-card.png");
+    width: 100%;
+    background-size: cover;
+    height: 230px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.card{
+    background-color: #51525C;
+}
+.card-member p{
+    font-size: 12px;
+}
+.card-member div{
+    font-size: 20px;
+}
+.avatar{
+    width: 25vw;
+    height: 25vw;
+    background-color: lightgray;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+@media only screen and (min-width: 900px) {
+    .text-jumbotron {
+        width: 32%;
+    }
+        .content-member {
+            margin-left: 22%;
+            margin-right: 3%;
+        }
+    .avatar{
+        width: 12vw;
+        height: 12vw;
+    }
+    .sidebar{
+        width: 20vw;
+    }
+    .content {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+
+    li.nav-item {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
