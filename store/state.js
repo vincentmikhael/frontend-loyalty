@@ -1,3 +1,6 @@
 export default () => ({
-    user: {}
+    user: {},
+    page: {
+        loading: false
+    }
 })

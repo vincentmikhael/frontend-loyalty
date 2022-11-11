@@ -9,10 +9,68 @@ body {
 div {
     color: white;
 }
+.col .form-control{
+    background-color: #2C2D36 !important;
+}
+.upload-file{
+    width: 150px;
+    position: relative;
+}
+.upload-file input{
+    width: 100%;
+    height: 20vh;
+    opacity: 0;
+    position: absolute;
+}
+
+.apexcharts-text,
+.apexcharts-xaxis-label {
+    display: none;
+    color: white !important;
+}
+.vgt-wrap.nocturnal .vgt-global-search{
+    background: #51525C !important;
+    border: 1px solid 51525C !important;
+}
+.vgt-table.nocturnal {
+    background-color: #51525C !important;
+}
+
+.vgt-table.nocturnal th.vgt-checkbox-col {
+    background: #51525C !important;
+}
+
+.vgt-table.nocturnal thead th {
+    background: #51525C !important;
+}
+
+.vgt-responsive {
+    background: #51525C !important;
+}
+
+.upload-file img{
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
+}
+p span {
+    color: red !important;
+}
+
+input,textarea {
+    background-color: #334155 !important;
+    border: 1px solid #334155 !important; 
+    color: white !important;
+}
 
 a {
     color: white;
     text-decoration: none;
+}
+
+.form-check-input[type=radio]{
+    background-color: transparent;
+    border-color: gray;
 }
 
 .form-dark input {
@@ -29,7 +87,6 @@ a {
 }
 
 .jumbotron {
-    background-image: url('/img/jumbotron.png');
     background-position: right;
     background-repeat: no-repeat;
     background-color: black;
@@ -46,7 +103,11 @@ a {
 .jumbotron img {
     margin-left: 12%;
 }
-
+.level-step .line{
+    width: 70px;
+    height: 3px;
+    background-color: rgb(192, 192, 192);
+}
 .content {
     padding-left: 8%;
     padding-right: 8%;
@@ -79,7 +140,7 @@ section {
     padding-bottom: 80px;
 }
 
-p.light {
+.light {
     font-weight: 100;
 }
 
@@ -99,18 +160,26 @@ section.dark {
     padding-top: 50px;
     overflow-y: hidden;
     position: fixed;
+    right: 0;
+    z-index: 10;
     background: linear-gradient(147.2deg, #58595E -11.95%, #2C2D36 80.41%);
+    margin-right: -500px;
 }
 .card-member{
     background-image: url("/img/bg-card.png");
     width: 100%;
     background-size: cover;
+    background-position: 1px;
+    background-repeat: no-repeat;
     height: 230px;
     padding: 30px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+}
+.logo-main{
+    width: 60%;
 }
 .card{
     background-color: #51525C;
@@ -135,7 +204,14 @@ section.dark {
     .text-jumbotron {
         width: 32%;
     }
-        .content-member {
+    .logo-main{
+        width:30%;
+    }
+    .sidebar{
+        left: 0;
+        margin-right: 0px;
+    }
+    .content-member {
             margin-left: 22%;
             margin-right: 3%;
         }
@@ -146,6 +222,10 @@ section.dark {
     .sidebar{
         width: 20vw;
     }
+    .card-member{
+        margin-top: 30px !important;
+        width: 100%;
+    }
     .content {
         padding-left: 15%;
         padding-right: 15%;
@@ -155,4 +235,23 @@ section.dark {
         padding-left: 20px;
         padding-right: 20px;
     }
+}
+
+@media only screen and (max-width: 900px) {
+.sidebar{
+    transition: .5s ease;
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -ms-transition: .5s ease;
+    -o-transition: .5s ease;
+}
+.sidebar.open{
+    margin-right: 0px;
+}
+.navbar .container{
+    max-width: 100%;
+}
+.navbar-brand img{
+    width: 250px !important;
+}
 }

@@ -2,7 +2,7 @@
     <div class="content mt-5 pt-5">
         <div class="row mt-5">
             <div class="col-md-6 d-none d-md-block position-relative">
-                <img src="img/card.png" alt="">
+                <img src="/img/card.png" alt="">
                 </div>
             <div class="col">
                 

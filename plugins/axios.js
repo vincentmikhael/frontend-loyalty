@@ -9,7 +9,8 @@ export default function ({ $axios }, inject) {
   })
 
   // Set baseURL to something different
-  api.setBaseURL('http://localhost:8080')
+  // api.setBaseURL('https://api.arrasmember.com/')
+  api.setBaseURL('http://localhost:8080/')
 
   // Inject to context as $api
   inject('api', api)

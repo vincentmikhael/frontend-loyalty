@@ -1,20 +1,17 @@
 <template>
     <div>
-        <img src="img/logo.png" class="img-fluid" alt="">
+        
         <div class="row align-items-center">
-            <div class="col-5">
-                <div class="card-member">
-                    <div class="mt-5">{{user.namaPengguna}}</div>
-                    <p>Member ID: {{user.id_pengguna}}</p>
+            <div class="col-md-4">
+                <div class="card-member mt-3">
+                    <div class="mt-5">Friska Oktaviani</div>
+                    <p>Member ID: 22012004</p>
                 </div>
             </div>
-            <div class="col-3">
-                <!-- <div class="">
-                    <apexchart width="300" type="donut" :options="options" :series="series"></apexchart>
-                </div> -->
-            </div>
-            <div class="col-4">
-                <div class="card p-2 mt-4">
+ 
+            <div class="col-md-4 mt-3 mt-md-0">
+                <p class="">PURCASE STATISTIC</p>
+                <div class="card pe-3 pt-4 rounded-4">
                     <div class="d-flex justify-content-end">
                         <div class="btn-group">
                             <button class="btn btn-secondary bg-transparent btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -29,6 +26,7 @@
                     <apexchart height="110" width="100%" type="line" :options="options" :series="series"></apexchart>
                 </div>
             </div>
+
         </div>
         <div class="d-flex">
             
@@ -39,7 +37,7 @@
 
         
 
-        <p class="mt-3">PURCHASE HISTORY</p>
+        <p class="mt-5 mt-md-3 mb-1 ms-3">PURCHASE HISTORY</p>
         <vue-good-table 
         :columns="columns" 
         :rows="rows" 
@@ -104,6 +102,11 @@ export default{
             ],
             rows: [
                 { id: 1, date: "22-10-2022", product: 'Lorem', shop: 'Ipsum', quantity: '2', price: '1000', discount: '20%',total: '500' },
+                { id: 2, date: "22-10-2022", product: 'Product One', shop: 'Test Shop', quantity: '55', price: '400000', discount: '20%',total: '370000' },
+                { id: 3, date: "22-10-2022", product: 'Product Two', shop: 'Ipsum', quantity: '2', price: '1000', discount: '20%',total: '500' },
+                { id: 3, date: "22-10-2022", product: 'Product Two', shop: 'Ipsum', quantity: '2', price: '1000', discount: '20%',total: '500' },
+                { id: 2, date: "22-10-2022", product: 'Product One', shop: 'Test Shop', quantity: '55', price: '400000', discount: '20%', total: '370000' },
+                { id: 2, date: "22-10-2022", product: 'Product One', shop: 'Test Shop', quantity: '55', price: '400000', discount: '20%', total: '370000' },
 
             ],
 
@@ -135,40 +138,27 @@ export default{
             
         };
     },
-    async mounted(){
-        this.user = this.$store.state.user
-        let a = await this.$api.get("/store/penjualan?token="+this.$store.state.user.token)
-        console.log(this.$store.state.user.token)
-        console.log(a.data)
-        this.rows = a.data.map(e=>{
-            return {
-                id: e.id,
-                date: e.tanggal_transaksi,
-                product: e.detailPesananList[0].nama_barang,
-                shop: e.lokasi_store,
-                quantity: e.sum_qty,
-                price: e.total,
-                discount: e.diskon,
-                total: e.total
-            }
-        })
-    },
+    // async mounted(){
+    //     this.user = this.$store.state.user
+    //     let a = await this.$api.get("/store/penjualan?token="+this.$store.state.user.token)
+    //     console.log(this.$store.state.user.token)
+    //     console.log(a.data)
+    //     this.rows = a.data.map(e=>{
+    //         return {
+    //             id: e.id,
+    //             date: e.tanggal_transaksi,
+    //             product: e.detailPesananList[0].nama_barang,
+    //             shop: e.lokasi_store,
+    //             quantity: e.sum_qty,
+    //             price: e.total,
+    //             discount: e.diskon,
+    //             total: e.total
+    //         }
+    //     })
+    // },
 }
 </script>
 <style>
-.vgt-table.nocturnal{
-    background-color: #51525C !important;
-}
-.vgt-table.nocturnal th.vgt-checkbox-col{
-    background: #51525C !important;
-}
-.vgt-table.nocturnal thead th{
-    background: #51525C !important;
-}
-.vgt-responsive{
-    background: #51525C !important;
-    border-radius: 30px;
-    padding: 25px;
-}
+
 </style>
 

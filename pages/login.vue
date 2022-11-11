@@ -2,9 +2,9 @@
     <div class="content mt-5 pt-5">
         <div class="row mt-5">
             <div class="col-md-6 d-none d-md-block position-relative">
-                <img src="img/img-login1.png" alt="">
+                <img src="/img/img-login1.png" alt="">
                 <img class="position-absolute" style="bottom: -25%; left: -10%; width: 60%;"
-                    src="img/img-login2.png" alt="">
+                    src="/img/img-login2.png" alt="">
             </div>
             <div class="col">
                 
@@ -18,17 +18,25 @@
                         <input v-model="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
                         <label for="floatingPassword">Password</label>
                     </div>
-                    <button @click="login" type="button" id="signin" class="btn btn-outline-light p-2 mt-5 px-4">SIGN IN</button>
+                    <button @click="login" type="button" id="signin" class="btn btn-outline-light p-2 mt-5 px-4">
+                        <div class="" v-if="loading">
+                            <div class="spinner-border text-light" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <div class="" v-else>SIGN IN</div>
+                        </button>
+                    
                 </form>
     
-                <p class="mt-5">Don't have any account yet? Please <a href="/register" class="fw-bold">Sign Up</a></p>
+                <!-- <p class="mt-5">Don't have any account yet? Please <a href="/register" class="fw-bold">Sign Up</a></p> -->
     
             </div>
         </div>
     
         <div style="bottom: 10%; left: -3%;"
             class="d-flex mt-5 pt-4 text-center icon-jumbotron position-relative mb-5 justify-content-center">
-            <img class="img-fluid" src="img/logo-jumbotron.png" alt="">
+            <img class="img-fluid" src="/img/logo-jumbotron.png" alt="">
         </div>
     
     </div>
@@ -38,16 +46,19 @@
 export default{
     data(){
         return{
+            loading: false,
             username: "",
             password: ""
         }
     },
     methods: {
         async login(){
-            let res = await this.$api.post('/auth/login')
-            this.$store.commit('setUser',res.data)
-            this.$cookies.set('token',res.data.token)
+            this.loading = true
+            // let res = await this.$api.post('/auth/login')
+            // this.$store.commit('setUser',res.data)
+            // this.$cookies.set('token',res.data.token)
             this.$nuxt.$options.router.push('/member')
+            this.loading = false
         }
     }
 }

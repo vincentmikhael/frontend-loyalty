@@ -40,6 +40,10 @@ script: [
     {
       src: '~/plugins/vuex-persist'
     },
+    {
+      src: '~/plugins/vue-smooth-scroll'
+    },
+    { src: "~/plugins/vue2-editor", mode: 'client' }
     
   ],
 
@@ -53,16 +57,24 @@ script: [
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    ['cookie-universal-nuxt', { alias: 'cookies' }]
+    ['cookie-universal-nuxt', { alias: 'cookies' }],
+    '@nuxtjs/toast',
+    "vue2-editor/nuxt"
   ],
-
+toast: {
+      position: 'bottom-right',
+      duration: 3000
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://31.187.75.125:8080/',
+    baseURL: 'https://api.arrasmember.com/',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  generate: {
+
+  },
   middleware: 'auth'
 }

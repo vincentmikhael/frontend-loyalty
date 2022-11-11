@@ -1,63 +1,58 @@
 <template>
-  <div>
-
-    <div class="jumbotron">
+  <div class="" v-if="$fetchState.pending"></div>
+  
+  <div v-else>
+    <div class="jumbotron" :style="{ 'background-image': 'url('+content.picture_1+')'}">
       <div class="content">
-        <h1><span>GET YOUR</span> <br> MEMBERSHIP</h1>
-        <p class="text-jumbotron">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et
-          velit
-          interdum, ac aliquet
-          odio
-          mattis. Class aptent taciti sociosqu ad litora torquent</p>
-          <NuxtLink to="/login">
-            <button type="button" class="btn btn-outline-light p-3">MEMBER AREA</button>
+        <h1><span>{{content.title1_1}}</span> <br> {{content.title2_1}}</h1>
+        <p class="text-jumbotron">{{content.description_1}}</p>
+          <NuxtLink :to="{ path: content.buttonlink_1 }">
+            <button type="button" class="btn btn-outline-light p-3 mt-4">{{content.button_1}}</button>
           </NuxtLink>
       </div>
     
       <div class="d-flex icon-jumbotron justify-content-center">
-        <img src="" alt="">
+        <img src="/img/logo-jumbotron.png" alt="">
       </div>
     </div>
     
-    <section>
+    <section id="membership" >
       <div class="content">
-        <div class=" d-md-flex align-items-center">
-          <img class="img-fluid" src="img/card.png" alt="">
-          <div class="text-center text-md-start">
-            <h1>MEMBERSHIP <span>PROGRAM</span></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
-              aliquet odio
-              mattis. Class aptent taciti sociosqu ad litora torquent</p>
+        <div class="text-center d-md-flex align-items-center">
+          <img class="img-fluid" :src="content.picture_2" alt="">
+          <div class="text-center ms-0 ms-md-3 text-md-start">
+            <h1>{{content.title_2}}</h1>
+            <p>{{content.description_2}}</p>
           </div>
         </div>
     
-        <div class="row mt-5 justify-content-center">
-          <div class="col">
-            <div class="d-flex align-items-center">
+        <div class="row mt-5 mt-md-2 justify-content-center">
+          <div class="col-12 col-md-4">
+            <div class="d-flex  align-items-center">
               <img src="img/tags.png" alt="">
               <div class="ms-3">
-                <p class="light">LOREM IPSUM</p>
-                <p class="light">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p class="light">{{content.icontitle1_2}}</p>
+                <p class="light">{{content.icondescription1_2}}</p>
               </div>
     
             </div>
           </div>
-          <div class="col my-3 my-md-0">
+          <div class="col-12 col-md-4 my-3 my-md-0">
             <div class="d-flex align-items-center">
               <img src="img/gift.png" alt="">
               <div class="ms-3">
-                <p class="light">LOREM IPSUM</p>
-                <p class="light">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p class="light">{{content.icontitle2_2}}</p>
+                <p class="light">{{content.icondescription2_2}}</p>
               </div>
     
             </div>
           </div>
-          <div class="col">
+          <div class="col-12 col-md-4">
             <div class="d-flex align-items-center">
               <img src="img/bc.png" alt="">
               <div class="ms-3">
-                <p class="light">LOREM IPSUM</p>
-                <p class="light">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p class="light">{{content.icontitle3_2}}</p>
+                <p class="light">{{content.icondescription3_2}}</p>
               </div>
     
             </div>
@@ -65,26 +60,33 @@
         </div>
     
         <div class="d-flex justify-content-center mt-5">
-          <button type="button" class="btn btn-outline-light p-3">BECOME A MEMBER</button>
+          <NuxtLink :to="{path: content.buttonlink_2}">
+          <button type="button" class="btn btn-outline-light p-3">{{content.button_2}}</button>
+          </NuxtLink>
         </div>
     
       </div>
     
     </section>
     
-    <section class="dark">
+    <section class="dark" id="news">
       <div class="content">
         <h1><span>NEWS &</span> PROMO</h1>
     
-        <div class="d-flex" style="overflow-x: hidden">
+        <div class="d-flex gap-5" style="overflow-x: hidden">
+          <NuxtLink to="/news">
          <div class="news-card" style="flex-shrink: 0;">
-            <img class="img-fluid" src="img/news.png" alt="">
+            <img class="img-fluid" src="/img/news.png" alt="">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
         </div>
+        </NuxtLink>
+
+        <NuxtLink to="/news">
         <div class="news-card" style="flex-shrink: 0;">
-          <img class="img-fluid" src="img/news2.png" alt="">
+          <img class="img-fluid" src="/img/news2.png" alt="">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
         </div>
+        </NuxtLink>
   
       </div>
     
@@ -105,7 +107,26 @@
 
 <script>
 export default {
+  data(){
+    return{
+      content: ""
+    }
+  },
   name: 'IndexPage',
-  layout: 'default'
+  layout: 'default',
+  computed: {
+    loading() {
+      return this.$store.state.page.loading
+    }
+  },
+  async fetch() {
+    this.$store.commit('setLoading',true)
+    let res = await this.$api.get('/landingpage/get')
+    this.content = res.data
+    console.log('aoj')
+    this.$store.commit('setLoading',false)
+  }
 }
 </script>
+
+
