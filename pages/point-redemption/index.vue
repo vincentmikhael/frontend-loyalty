@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-7">
                     <p class="flex-fill">
-                        Hello Friska, currently you have 4000 points, and now at Bronze level, You can exchange your points for interesting
+                        Hello Friska, currently you have 4000 points, and now at Silver level, You can exchange your points for interesting
                         merchandise that we provide. We will send this merchandise directly to your home
                     </p>
                 </div>
@@ -26,6 +26,19 @@
             
         </div>
 
+        <p class="mt-4">Merchandise</p>
+        
+        <div class="row">
+            <div v-for="item in data" :key="item.id" class="col-md-3">
+                <img :src="item.img_active" class="img-fluid" alt="">
+                <p class="text-center mt-2">{{item.name}}</p>
+
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-outline-warning">Reedem</button>
+                </div>
+                
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -38,8 +51,19 @@ export default {
     data() {
         return {
             user: {},
+            data: []
         };
     },
+    methods: {
+        async getData(){
+            let res = await this.$api.get('merch/get')
+            console.log(res.data.data)
+            this.data = res.data.data
+        }
+    },
+    mounted(){
+        this.getData()
+    }
 }
 </script>
 

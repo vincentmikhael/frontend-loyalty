@@ -150,7 +150,7 @@ export default{
     },
     methods: {
         uploadImage(e) {
-            const image = e.target.files[0]
+            let image = e.target.files[0]
             const reader = new FileReader();
             reader.readAsDataURL(image);
             reader.onload = z => {
@@ -185,13 +185,13 @@ export default{
             this.isEdit = id
             let res = await this.$api.get('level/get?id='+id)
             this.formdata = {
-                name: res.data.data.name,
-                maximum: res.data.data.maximum,
-                minimum: res.data.data.minimum
+                name: res.data.data[0].name,
+                maximum: res.data.data[0].maximum,
+                minimum: res.data.data[0].minimum
             }
             this.placeholder = {
-                img_active: res.data.data.img_active,
-                img_idle: res.data.data.img_idle
+                img_active: res.data.data[0].img_active,
+                img_idle: res.data.data[0].img_idle
             }
             
 
@@ -213,9 +213,12 @@ export default{
             
         },
         async handleDelete(id){
-            let res = await this.$api.delete('/level/delete/'+id)
-            this.$toast.success(res.data.message)
-            this.$fetch()
+            this.$confirm("Delete data", "Are you sure?", "warning").then(async()=>{
+                let res = await this.$api.delete('/level/delete/' + id)
+                this.$toast.success(res.data.message)
+                this.$fetch()
+            })
+            
         }
         
     },

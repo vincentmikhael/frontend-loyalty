@@ -19,6 +19,7 @@
                 <div class="col">
                     <input v-model="formdata.title" type="text" class="form-control">
                 </div>
+                
             </div>
             <div class="mb-1 mt-3 row">
                 <label for="inputPassword" class="col-3 col-form-label">
@@ -140,6 +141,9 @@ import { VueGoodTable } from 'vue-good-table';
                         })
                     }else{
                         this.$toast.success(res.data.message)
+                        await this.$fetch()
+                        this.picture = '/img/placeholder-img.png'
+                        this.formdata = {}
                     }
                 }else{
                     this.$toast.error("Form required!!!")
@@ -154,13 +158,13 @@ import { VueGoodTable } from 'vue-good-table';
                 this.isEdit = id
                 let res = await this.$api.get('news/get?id=' + id)
                 this.formdata = {
-                    id: res.data.data.id,
-                    date: res.data.data.date,
-                    title: res.data.data.title,
-                    category: res.data.data.category,
-                    description: res.data.data.description,
+                    id: res.data.data[0].id,
+                    date: res.data.data[0].date,
+                    title: res.data.data[0].title,
+                    category: res.data.data[0].category,
+                    description: res.data.data[0].description,
                 }
-                this.picture = res.data.data.picture
+                this.picture = res.data.data[0].picture
             },
             async handleEdit() {
                 let fData = new FormData()
@@ -178,9 +182,11 @@ import { VueGoodTable } from 'vue-good-table';
 
             },
             async handleDelete(id) {
-                let res = await this.$api.delete('/news/delete/' + id)
-                this.$toast.success(res.data.message)
-                await this.$fetch()
+                this.$confirm("Delete data", "Are you sure?", "warning").then(async()=>{
+                    let res = await this.$api.delete('/news/delete/' + id)
+                    this.$toast.success(res.data.message)
+                    await this.$fetch()
+                })
             }
         },
         

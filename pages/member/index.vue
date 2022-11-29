@@ -4,8 +4,8 @@
         <div class="row align-items-center">
             <div class="col-md-4">
                 <div class="card-member mt-3">
-                    <div class="mt-5">Friska Oktaviani</div>
-                    <p>Member ID: 22012004</p>
+                    <div class="mt-5">{{$store.state.user.fullname}}</div>
+                    <p>Member ID: {{$store.state.user.id}}</p>
                 </div>
             </div>
  
@@ -138,24 +138,24 @@ export default{
             
         };
     },
-    // async mounted(){
-    //     this.user = this.$store.state.user
-    //     let a = await this.$api.get("/store/penjualan?token="+this.$store.state.user.token)
-    //     console.log(this.$store.state.user.token)
-    //     console.log(a.data)
-    //     this.rows = a.data.map(e=>{
-    //         return {
-    //             id: e.id,
-    //             date: e.tanggal_transaksi,
-    //             product: e.detailPesananList[0].nama_barang,
-    //             shop: e.lokasi_store,
-    //             quantity: e.sum_qty,
-    //             price: e.total,
-    //             discount: e.diskon,
-    //             total: e.total
-    //         }
-    //     })
-    // },
+    async mounted(){
+        this.user = this.$store.state.user
+        // let a = await this.$api.get("/store/penjualan?token="+this.$store.state.user.token)
+        // console.log(this.$store.state.user.token)
+        // console.log(a.data)
+        // this.rows = a.data.map(e=>{
+        //     return {
+        //         id: e.id,
+        //         date: e.tanggal_transaksi,
+        //         product: e.detailPesananList[0].nama_barang,
+        //         shop: e.lokasi_store,
+        //         quantity: e.sum_qty,
+        //         price: e.total,
+        //         discount: e.diskon,
+        //         total: e.total
+        //     }
+        // })
+    },
 }
 </script>
 <style>

@@ -5,17 +5,35 @@
                 <i @click="sidebar = false" class="d-block d-md-none fas fa-times position-absolute" style="top: 10px;"></i>
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <div class="avatar"></div>
-                    <h6 class="mt-4">Friska Octaviani</h6>
-                    <p>2002113</p>
-                    <div class="level">Bronze Level</div>
+                    <h6 class="mt-4">{{ $store.state.user.fullname }}</h6>
+                    <p>{{$store.state.user.id}}</p>
+                    <div class="level">Silver Level</div>
 
-                    <div v-for="(menu,i) in dataMenu" :key="i" class="mt-4">
-                        <div @click="sidebar = false">
-                            <NuxtLink :to="menu.to" class="">
-                                <i :class="menu.icon"></i>
-                                {{menu.title}}
-                            </NuxtLink>
+                    <div v-if="$store.state.user.role == 'member'" class="text-center">
+                        <div v-for="(menu,i) in dataMenu.member" :key="i" class="mt-4">
+                            <div @click="sidebar = false">
+                                <NuxtLink :to="menu.to" class="">
+                                    <i :class="menu.icon"></i>
+                                    {{menu.title}}
+                                </NuxtLink>
+                            </div>
                         </div>
+                    </div>
+                    <div v-else-if="$store.state.user.role == 'administrator'" class="text-center">
+                        <div v-for="(menu,i) in dataMenu.administrator" :key="i" class="mt-4">
+                            <div @click="sidebar = false">
+                                <NuxtLink :to="menu.to" class="">
+                                    <i :class="menu.icon"></i>
+                                    {{menu.title}}
+                                </NuxtLink>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="cursor: pointer;" class="mt-5" @click="logout">
+                        <i class="fas fa-sign-out">
+                        </i>
+                        Logout
                     </div>
                 </div>
                 <!-- <div class="mt-4">
@@ -39,32 +57,20 @@
 </template>
 
 <script>
+import menu from '@/data/menu'
 export default{
+    middleware: 'auth',
     data: () => ({
         sidebar: false,
-        dataMenu: [
-            {
-                icon: 'fa-solid fa-user-gear',
-                title: 'Data Profile',
-                to: "/data-member"
-            },
-            {
-                icon: 'fa-solid fa-star',
-                title: 'Level Member',
-                to: "/level-member"
-            },
-            {
-                icon: 'fa-solid fa-barcode',
-                title: 'Voucher Code',
-                to: "/voucher-code"
-            },
-            {
-                icon: 'fa-solid fa-gift',
-                title: 'Point Redemption',
-                to: "/point-redemption"
-            },
-        ]
+        dataMenu: menu
     }),
+    methods: {
+        logout(){
+            this.$store.commit('setUser', {})
+            this.$cookies.remove('token')
+            this.$nuxt.$options.router.push('/login')
+        }
+    }
     // mounted(){
     //     this.
     // }

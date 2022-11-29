@@ -72,21 +72,18 @@
     <section class="dark" id="news">
       <div class="content">
         <h1><span>NEWS &</span> PROMO</h1>
-    
-        <div class="d-flex gap-5" style="overflow-x: hidden">
-          <NuxtLink to="/news">
-         <div class="news-card" style="flex-shrink: 0;">
-            <img class="img-fluid" src="/img/news.png" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-        </div>
-        </NuxtLink>
 
-        <NuxtLink to="/news">
-        <div class="news-card" style="flex-shrink: 0;">
-          <img class="img-fluid" src="/img/news2.png" alt="">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-        </div>
-        </NuxtLink>
+    
+        <div class="d-flex gap-5" style="overflow-x: scroll">
+          <div class="" v-for="data in news" :key="data.id">
+            <NuxtLink :to="'/news/'+data.title+'?id='+data.id">
+              <div class="news-card" style="flex-shrink: 0;">
+                <img class="img-fluid" style="object-fit: cover; height: 200px;" :src="data.picture" alt="">
+                <p>{{data.title}}</p>
+              </div>
+            </NuxtLink>
+          </div>
+          
   
       </div>
     
@@ -109,7 +106,8 @@
 export default {
   data(){
     return{
-      content: ""
+      content: "",
+      news: []
     }
   },
   name: 'IndexPage',
@@ -119,10 +117,19 @@ export default {
       return this.$store.state.page.loading
     }
   },
+  methods: {
+    async getContent(){
+      let res = await this.$api.get('/landingpage/get')
+      let resNews = await this.$api.get('/news/get')
+      this.news = resNews.data.data
+      this.content = res.data
+    },
+
+  },
   async fetch() {
     this.$store.commit('setLoading',true)
-    let res = await this.$api.get('/landingpage/get')
-    this.content = res.data
+    await this.getContent()
+
     console.log('aoj')
     this.$store.commit('setLoading',false)
   }

@@ -4,7 +4,7 @@
             <nav :class="{bgdark: scrollPosition > 40}" class="navbar navbar-dark py-4 fixed-top bg-transparent navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="/">
-                        <img class="img-fluid" src="img/logo.png" style="width: 250px" alt="">
+                        <img class="img-fluid" src="/img/logo.png" style="width: 250px" alt="">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

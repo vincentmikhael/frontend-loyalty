@@ -9,8 +9,23 @@ body {
 div {
     color: white;
 }
+#swal2-content{
+    color: gray;
+}
+
+div::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
 .col .form-control{
     background-color: #2C2D36 !important;
+}
+.form-floating .form-control{
+    background-color: transparent !important;
+}
+select{
+    background-color: #2C2D36 !important;
+    color: white !important;
 }
 .upload-file{
     width: 150px;
@@ -158,7 +173,7 @@ section.dark {
     height: 100vh;
     padding: 12px;
     padding-top: 50px;
-    overflow-y: hidden;
+    overflow-y: scroll;
     position: fixed;
     right: 0;
     z-index: 10;

@@ -190,15 +190,15 @@ export default {
             let res = await this.$api.get('merch/get?id=' + id)
             console.log(res)
             this.formdata = {
-                id: res.data.data.id,
-                name: res.data.data.name,
-                description: res.data.data.description,
-                minimum: res.data.data.minimum,
-                valid_until: res.data.data.valid_until,
+                id: res.data.data[0].id,
+                name: res.data.data[0].name,
+                description: res.data.data[0].description,
+                minimum: res.data.data[0].minimum,
+                valid_until: res.data.data[0].valid_until,
             }
             this.placeholder = {
-                img_active: res.data.data.img_active,
-                img_idle: res.data.data.img_idle
+                img_active: res.data.data[0].img_active,
+                img_idle: res.data.data[0].img_idle
             }
         },
         async handleEdit() {
@@ -217,9 +217,12 @@ export default {
 
         },
         async handleDelete(id) {
-            let res = await this.$api.delete('/merch/delete/' + id)
-            this.$toast.success(res.data.message)
-            await this.$fetch()
+            this.$confirm("Delete data", "Are you sure?", "warning").then(async ()=>{
+                let res = await this.$api.delete('/merch/delete/' + id)
+                this.$toast.success(res.data.message)
+                await this.$fetch()
+            })
+            
         }
 
     },

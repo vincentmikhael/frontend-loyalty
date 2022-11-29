@@ -7,32 +7,19 @@
                 <small class="light">Hello Friska, currently you have 4000 points, and now at Bronze level, increase your points and get
                     your Silver Level!</small> <br>
 
-                    <div class="d-flex text-center align-items-center level-step">
-                        <div class="">
-                            <div>Bronze Level</div>
-                            <img class="img-fluid" src="/img/bronze.png" alt="">
-                            <p>10.000 Point</p>
-                        </div>
-                        
-                        <div class="line d-none d-md-block"></div>
-                        <div class="d-none d-md-block">
-                            <div class="">Silver Level</div>
-                            <img class="img-fluid" src="/img/unlevel.png" alt="">
-                            <p>20.000 Point</p>
-                        </div>
-                        <div class="line d-none d-md-block"></div>
-                        <div class="d-none d-md-block">
-                            <div class="">Gold Level</div>
-                            <img class="img-fluid" src="/img/unlevel.png" alt="">
-                            <p>30.000 Point</p>
-                        </div>
-                        <div class="line d-none d-md-block"></div>
-                        <div class="d-none d-md-block">
-                            <div class="">Platinum Level</div>
-                            <img class="img-fluid" src="/img/unlevel.png" alt="">
-                            <p>40.000 Point</p>
-                        </div>
 
+                    <div class="d-flex text-center align-items-center level-step">
+                        <template v-for="(item,i) in data">
+                            <div :class="
+                                item.name != 'Silver' ? 'd-none d-md-block' : ''
+                                ">
+                                <div>{{item.name}} Level</div>
+                                <img class="img-fluid" :src="'Silver' == item.name ? item.img_active : item.img_idle" alt="">
+                                <p>{{item.minimum}} Points</p>
+                            </div>
+                            
+                            <div v-if="(data.length - 1) != i" class="line d-none d-md-block"></div>
+                        </template>
 
                     </div>
                     
@@ -70,11 +57,19 @@ export default {
     data() {
         return {
             user: {},
-
-
-
+            data: []
         };
     },
+    methods: {
+        async getData (){
+            let res = await this.$api.get('level/get')
+            console.log(res.data.data)
+            this.data = res.data.data
+        }
+    },
+    mounted(){
+        this.getData()
+    }
 }
 </script>
 

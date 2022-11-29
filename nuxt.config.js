@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'frontend',
+    title: 'Arras Membership',
     htmlAttrs: {
       lang: 'en',
     },
@@ -43,7 +43,8 @@ script: [
     {
       src: '~/plugins/vue-smooth-scroll'
     },
-    { src: "~/plugins/vue2-editor", mode: 'client' }
+    { src: "~/plugins/vue2-editor", mode: 'client' },
+    {src: "~/plugins/simple-alert",mode: 'client'}
     
   ],
 
